@@ -131,11 +131,14 @@ function clearInputFields() {
 
 // 不同模式下，在列表中加载不同数据
 function loadUrlList() {
+  // 先保存长链接输入框的值，因为 clearInputFields 会清空它
+  const longUrl = longUrlElement ? longUrlElement.value.trim() : '';
   clearInputFields();
+  // 恢复长链接输入框的值，以支持输入时实时过滤列表
+  if (longUrlElement) longUrlElement.value = longUrl;
   const urlList = urlListElement;
   urlList.innerHTML = '';
   const currentMode = window.current_mode;
-  const longUrl = longUrlElement.value.trim();
 
   const targetPrefix = `${currentMode}:`;
   let keys = [];

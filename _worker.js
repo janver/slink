@@ -8,9 +8,9 @@ export default {
   },
 };
 
-const system_base_url = 'https://blog2.811520.xyz/slink'; // 基础URL
-const main_html = `${system_base_url}/index.html`; // 默认为短链页面
-const html_404 = `${system_base_url}/404.html`;
+const system_base_url = 'https://raw.githubusercontent.com/janver/slink/refs/heads/main'; // 基础URL
+const main_html = `https://raw.githubusercontent.com/janver/slink/refs/heads/main/index.html`; // 默认为短链页面
+const html_404 = `https://raw.githubusercontent.com/janver/slink/refs/heads/main/404.html`;
 
 async function get404Html() {
   const defaultHtml = `
@@ -439,8 +439,10 @@ async function handleRequest(request, env, ctx) {
     if (pathSegments.length === 1) {
       target_html_url = main_html;
     } else if (pathSegments.length >= 2) {
-      if (['link', 'note'].includes(system_type)) {
-        target_html_url = `${system_base_url}/${system_type}/index.html`;
+      if (['link'].includes(system_type)) {
+        target_html_url = `${system_base_url}/index.html`;
+      } else if (['note'].includes(system_type)) {
+        target_html_url = `${system_base_url}/note/index.html`;
       } else {
         return response404();
       }
