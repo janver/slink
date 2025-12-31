@@ -13,9 +13,9 @@ jobs:
   auto-deploy:
     runs-on: ubuntu-latest
     env:
-      ADMIN: ${{ vars.ADMIN }}
-      PASSWORD: ${{ vars.PASSWORD }}
-      CF_KV_ID: ${{ vars.CF_KV_ID }}
+      ADMIN: ${{ secrets.ADMIN }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      CF_KV_ID: ${{ secrets.CF_KV_ID }}
     
     steps:
       - name: ⬇️ 检出仓库
@@ -63,14 +63,14 @@ jobs:
       - name: 🚀 部署到 CF Worker
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ vars.CF_API_TOKEN }}
-          accountId: ${{ vars.CF_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
           vars: ${{ steps.dynamic_vars.outputs.vars_list }}
           
       - name: ✨ 输出 Worker 管理后台
         env:
           WORKER_NAME: ${{ steps.config_setup.outputs.worker_name }}
-          ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
+          ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
           echo -e "\n✨✨✨ 部署完成 ✨✨✨"
           echo "🌐 点击以下链接可访问项目管理后台"
