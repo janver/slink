@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const mainContentContainer = document.querySelector('.container');
     if (mainContentContainer) {
-        mainContentContainer.insertAdjacentHTML('afterend', htmlToInsert);
+        // mainContentContainer.insertAdjacentHTML('afterend', htmlToInsert);
     }
 });
