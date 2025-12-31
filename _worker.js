@@ -8,9 +8,9 @@ export default {
   },
 };
 
-const system_base_url = 'https://raw.githubusercontent.com/janver/slink/refs/heads/main'; // 基础URL
-const main_html = `https://raw.githubusercontent.com/janver/slink/refs/heads/main/index.html`; // 默认为短链页面
-const html_404 = `https://raw.githubusercontent.com/janver/slink/refs/heads/main/404.html`;
+const system_base_url = 'https://cdn.jsdelivr.net/gh/janver/slink@main'; // 基础URL
+const main_html = `${system_base_url}/index.html`; // 默认为短链页面
+const html_404 = `${system_base_url}/404.html`;
 
 async function get404Html() {
   const defaultHtml = `
